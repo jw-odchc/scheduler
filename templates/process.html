@@ -61,7 +61,7 @@
                     <td {% if value['result']=='fail' %} style="color: red;" {%endif%}>{{value['result']}}</td>
                     <td>{{value['errors']}}</td>
                     <td>{{value['status']}}</td>
-                    <td>{% if value['trigger'] == 'scheduled' %}<i class="far fa-clock"></i>  {%elif value['trigger'] == 'Manual'%} <i class="fas fa-id-badge"></i> {%endif%}  </td>
+                    <td>{% if value['trigger'] == 'Scheduler' %}<i class="far fa-clock"></i>  {%elif value['trigger'] == 'Manual'%} <i class="fas fa-id-badge"></i> {%endif%}  </td>
                 </tr>
                 {%endfor%}
             </tbody>

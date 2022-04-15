@@ -1,9 +1,7 @@
-from asyncio import subprocess
+
 from flask import Flask, render_template, request, redirect, url_for
 import scheduled_jobs
 import psutil
-import time
-import subprocess
 import pandas
 import os
 import json
@@ -22,15 +20,12 @@ def tasks():
                 job.func()
             except Exception as error:
                 print(error)
-
     jobs = scheduled_jobs.scheduler.get_jobs()
-
     return render_template('schedule.html', jobs=jobs, title='Scheduler')
 
 
 @app.route("/log")
 def processes():
-
     file_location = scheduled_jobs.log_directory  
     def is_running(pid):
         if psutil.pid_exists(pid) and os.path.basename(psutil.Process(pid).cmdline()[0]) == 'python.exe':
@@ -65,13 +60,11 @@ def processes():
     process_status = {}
 
     for process in processes:
-        id = os.path.basename(process).split('.')[0]#+'.py'
+        id = os.path.basename(process).split('.')[0]
         log_data = get_data(process)
-        # table = log_data.to_html(index=False, classes='table table-sm  collapse log', table_id=id) {{ log | safe }}
         process_logs[id]=log_data
         process_status[id] = {'status': log_data['status'].iloc[0], 'pid': log_data['pid'].iloc[0]}
         
-
     return render_template('process.html', title='Logs', sever='server', log_data=process_logs, process_status=process_status)
 
 @app.route("/error404")
