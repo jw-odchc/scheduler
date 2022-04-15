@@ -28,9 +28,19 @@
             
             <h1 > <a id='page-header' href='{{server}}'>{{title}} </a></h1>
         </div>
-        <div class='col-2' id='burger'>
-            <img id='show_menu' src="{{url_for('static',filename='images/burger.png')}}" class='button burger-icon'
-                data-toggle="collapse" href='#link-menu' role="button" alt="Menu" aria-expanded="false"
-                aria-controls="link-menu">
+        {% if title == 'Scheduler' %}
+        <div class='col-1 offset-1 mb'>
+            <a href="http://biappserv01:8045/processes" target=”_blank”>
+                <img src="{{url_for('static',filename='images/log.png')}}" class='link-icon' alt="Scheduler Icon">
+            </a>
         </div>
+        {% else %}
+        <div class='col-1 offset-1 mb'> 
+            <a href="http://biappserv01:8045/scheduler" target=”_blank”>
+            <img src="{{url_for('static',filename='images/schedule.png')}}" class='link-icon' alt="Scheduler Icon">
+        </a>
+        </div>
+
+        {%endif%}
+
     </div>

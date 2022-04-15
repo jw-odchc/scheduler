@@ -1,8 +1,8 @@
 {% include "head.html" %}
 {% block content %}
-
+<form method="POST">
 <div class='row'>
-    <div class='col-8 offset-2' id="process-header">
+    <div class='col-12' id="process-header">
         <h2>Scheduled Jobs </h2>
         <div class='scheduled-jobs'>
             <table class='table'>
@@ -10,6 +10,7 @@
                     <th>Job </th>
                     <th>Next Run Time</th>
                     <th>Schedule</th>
+                    <th>Task</th>
                 </thead>
                 <tbody>
                     {% for job in jobs%}
@@ -26,7 +27,7 @@
                             {{job['trigger']}}
                         </td>
                         <td>
-
+                            <button class="btn btn-secondary" type="submit" name="submit_button" value="{{job['id']}}"> Run  </input>
                         </td>
                     </tr>
 
@@ -35,10 +36,8 @@
             </table>
         </div>
     </div>
-    <div class='col-2'>
-        {%include "menu.html"%}
-    </div>
 </div>
+</form>
 
 {% include 'foot.html' %}
 </body>

@@ -3,6 +3,10 @@
     background: white !important;
 }
 
+.mb{
+    padding: 5px 0px 0px 30px;
+}
+
 .form-title{
     font-family: 'Pridi' !important;
 }

@@ -12,36 +12,31 @@ app = Flask(__name__)
 scheduled_jobs.scheduler.init_app(app)
 scheduled_jobs.scheduler.start()
 
-@app.route("/scheduler")
+@app.route("/", methods=['POST', 'GET'])
 def tasks():
+    if request.method == 'POST':
+        run_job = request.form.get('submit_button')
+        if run_job is not None:
+            try:
+                job = scheduled_jobs.scheduler.get_job(run_job)
+                job.func()
+            except Exception as error:
+                print(error)
+
     jobs = scheduled_jobs.scheduler.get_jobs()
-    return render_template('blank.html', jobs=jobs)
+
+    return render_template('schedule.html', jobs=jobs, title='Scheduler')
 
 
-@app.route("/processes", methods=['POST', 'GET'])
+@app.route("/log")
 def processes():
 
-    file_location = r'C:\Users\jwilliams\Local Files\Scripty'   
+    file_location = scheduled_jobs.log_directory  
     def is_running(pid):
         if psutil.pid_exists(pid) and os.path.basename(psutil.Process(pid).cmdline()[0]) == 'python.exe':
             return 'running'
         else:
             return 'terminated'
-
-    if request.method == 'POST':
-        script = request.form.get('submit_button')
-        if script is not None:
-            # print('button is', script)
-            if script.isdigit():
-                pid = int(script)
-                if is_running(pid):
-                    # p = psutil.Process(pid)
-                    psutil.Process(pid).terminate()
-            else:
-                file_path = f'{file_location}\{script}.py'
-                subprocess.Popen(['python', file_path], creationflags=subprocess.CREATE_NEW_CONSOLE)
-            time.sleep(1)
-        return 
 
     def get_data(file_name):
         log = []
@@ -77,7 +72,7 @@ def processes():
         process_status[id] = {'status': log_data['status'].iloc[0], 'pid': log_data['pid'].iloc[0]}
         
 
-    return render_template('process.html', title='Processes', sever='server', log_data=process_logs, process_status=process_status)
+    return render_template('process.html', title='Logs', sever='server', log_data=process_logs, process_status=process_status)
 
 
 if __name__ =='__main__':
