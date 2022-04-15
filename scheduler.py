@@ -1,5 +1,5 @@
 from asyncio import subprocess
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, url_for
 import scheduled_jobs
 import psutil
 import time
@@ -74,6 +74,14 @@ def processes():
 
     return render_template('process.html', title='Logs', sever='server', log_data=process_logs, process_status=process_status)
 
+@app.route("/error404")
+def error404():
+    return render_template('error404.html')
+
+
+@app.errorhandler(404)
+def internal_error(error):
+    return redirect(url_for('error404'))
 
 if __name__ =='__main__':
     app.run(debug=True)
