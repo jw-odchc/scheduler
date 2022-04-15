@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+     <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="icon" type="image/png" href="{{url_for('static',filename='images/Favicon.png')}}" />
+
+    <link href="https://fonts.googleapis.com/css?family=Sacramento|Montserrat:400,600,900|Patua+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='main.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='style.css')}}">
+
+    <title> BI Portal</title>
+</head>
+
+<body class="body-head">
+    <header class="site-header">
+      <div class="tool-bar"> 
+        <img class="logo" src="{{url_for('static',filename='images/darklogo.png')}}" alt="ODCHC Logo"> 
+      </div>
+      <div class="menu-dropdown">
+        <img class="menu" src="{{url_for('static',filename='images/menubutton.png')}}" alt="menu">
+        <div class="menu-dropdown-content">
+          {%if is_authenticated %}
+          <a class="menuButton" href="{{url_for('main.home')}}">Home</a>
+            <a class="menuButton" href="{{url_for('main.logout')}}">Logout</a>
+          {% else %}
+            <a class="menuButton" href="{{url_for('main.login')}}">Login</a>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="title">
+        <h1 class="title-link">{{title}}</h1>
+      </div>
+    </header>
+
+    <main role="main" class="container">
+      <div id="flash-row" class="row">
+        <div class="col-md-8">
+            {% with messages = get_flashed_messages(with_categories=true) %}  <!-- flashed messages above content -->
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+      </div>
+            {% block content %}{% endblock %}
+    </main>
+  </body>
+</html>

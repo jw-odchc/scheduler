@@ -1,0 +1,100 @@
+{% include "head.html" %}
+{% block content %}
+
+<form method="POST">
+
+    <div class='row'>
+        <div class='col-8 offset-2' id="process-header">
+            <h2>Current Processes <button type="button" onclick="location.reload();" class="btn btn-link"><i
+                        class="fas fa-sync refresh" style="color: green;"></i></button></h2>
+            <div class='process-log'>
+                <table class='table'>
+                    <thead>
+                        <th> Process </th>
+                        <th>Status</th>
+                        <th>Task</th>
+                        <th>View Log</th>
+                    </thead>
+                    <tbody>
+                        {% for process, status in process_status.items()%}
+                        <tr>
+                            <td> {{process}}</td>
+                            <td style={% if status['status']=='running' %} "color: green;" {%else%} "color: red;"
+                                {%endif%}>
+                                {{status['status']}} {% if status['status'] == 'running' %} <i
+                                    class="fas fa-arrow-alt-circle-up" style='color: green;'> </i>
+                                {%else%}<i class="fas fa-times-circle" style='color: red;'> </i> {%endif%}
+                            </td>
+                            <td><button class='btn btn-secondary' type="submit" name="submit_button" {%if
+                                    status['status']=='running' %} value={{status['pid']}}> Stop {%else%}
+                                    value={{process}}> Run {%endif%} </input></td>
+                            <td><button class="info-button btn btn-outline-info" type="button"
+                                    data-target="{{process}}"> Log </button></td>
+                        </tr>
+
+                        {%endfor%}
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        <div class='col-2'>
+            {%include "menu.html"%}
+        </div>
+
+    </div>
+
+    {% for process, log in log_data.items()%}
+
+    <div class='{{process}} logs' style="padding-bottom: 50px;" id='{{process}}'>
+        <h2 class="prov-title">{{process}}</h2>
+        <table class='table table-sm log-table'>
+            <thead>
+                <th> Time </th>
+                <th> PID </th>
+                <th> File </th>
+                <th> Event </th>
+                <th> Result </th>
+                <th> Errors </th>
+                <th> Status </th>
+                <th> <i class="fas fa-clock"></i> / <i class="fas fa-binoculars"> / <i class="fas fa-id-badge"></i></th> 
+            </thead>
+            <tbody>
+                {%for key, value in log.iterrows()%}
+                <tr>
+                    <td>{{value['time']}}</td>
+                    <td>{{value['pid']}}</td>
+                    <td>{{value['file']}}</td>
+                    <td>{{value['event']}}</td>
+                    <td {% if value['result']=='fail' %} style="color: red;" {%endif%}>{{value['result']}}</td>
+                    <td>{{value['errors']}}</td>
+                    <td>{{value['status']}}</td>
+                    <td>{% if value['trigger'] == 'scheduled' %}<i class="far fa-clock"></i>  {%elif value['trigger'] == 'manual'%} <i class="fas fa-id-badge"></i> {%else%}<i class="fas fa-binoculars"></i> {%endif%}  </td>
+                </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+    </div>
+    {%endfor%}
+
+</form>
+
+{% include 'foot.html' %}
+
+<script>
+    $(document).ready(function () {
+
+        $('.logs').hide();
+
+        $(".info-button").click(function () {
+            target = $(this).attr("data-target");
+            $('.logs').hide();
+            $('#' + target).toggle();
+        });
+    });
+</script>
+
+</body>
+
+</html>
+{% endblock content %}

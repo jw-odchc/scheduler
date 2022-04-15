@@ -1,0 +1,348 @@
+.form-wrapper-component{
+    background-color: white !important;
+    background: white !important;
+}
+
+.form-title{
+    font-family: 'Pridi' !important;
+}
+
+.forms-layout#form-component.form-wrapper-component .scroll-style .default-app-theme{
+    background: white !important;
+}
+
+code{
+    background-color: lightgray;
+    font-size: 14px;
+    line-height: 1.2em;
+    color: black;
+}
+
+pre{
+    width: auto;
+    background-color: lightgray;
+    margin-left: 20px;
+    padding: 10px;
+}
+
+body{
+    font-family: 'Pridi';
+    width: 1200px;
+    margin: auto;
+    line-height: 1.5em;
+}
+
+p{
+    font-size: 14px;
+}
+
+h2{
+    font-weight: 500;
+}
+
+h1{
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+
+strong{
+    font-weight: 600;
+}
+
+#page-header{
+    font-weight: 400;
+    color: white;
+    text-decoration: none;
+}
+
+
+#searchclear, #searchclear2 {
+    position: absolute;
+    right: 5px;
+    top: 0;
+    bottom: 0;
+    height: 14px;
+    margin: auto;
+    font-size: 14px;
+    cursor: pointer;
+    color: #ccc;
+}
+
+.wiki-btn{
+    min-height: 20px;
+    color: black;
+    background-color: white;
+}
+.btn:hover{
+    color: lightslategray;
+}
+.btn:focus, .btn:active{
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+#heading{
+    font-weight: 600;
+    font-size: 22px;
+
+}
+
+#menu {
+    text-align: center;
+    height: auto;
+    background-color:black;
+    margin-top: 10px;
+    min-height: 400px;
+    padding-bottom: 20px;
+
+}
+
+.menu_item{
+    margin-top:20px;
+    background-color: white;
+}
+
+.row{
+    margin-top: 15px;
+}
+
+#banner{
+    background-color: black;
+    color: white;
+    text-align: center;
+    height: 60px;
+    padding-top: 5px;
+}
+
+#code_choices{
+    padding-bottom: 10px;
+}
+
+#md{
+    margin-top: 10px;
+}
+
+#links{
+    text-align: center;
+}
+
+.link-icon {
+    width: 50px;
+    margin: auto;
+}
+.link-name {
+    margin-top: 5px;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.auto-marg{
+    margin:auto;
+}
+
+.icon-right{
+    text-align: right;
+    margin-right: 5px;
+}
+
+  .icon-tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    color: black;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    margin-left: 35px;
+   
+    position: absolute;
+    z-index: 1;
+  }
+  
+  .icon-tooltip:hover .tooltiptext {
+    visibility: visible;
+  }
+
+
+
+#link-heading{
+    color: white;
+    background-color: black;
+    font-size: 20px;
+    font-weight: 600px;
+    height: auto;
+    width: 150px;
+    margin-top: 10px;   
+}
+
+.banner-icon{
+    height: 60px;
+    margin-top: -5px;
+}
+
+.banner-row{
+    background-color: black;
+}
+
+.burger-icon{
+    height: 55px;
+    margin-left: 100px;
+}
+
+.format-icon{
+    height: 40px;
+    margin: auto;
+}
+
+.selectpicker {
+    height: 35px;
+
+}
+
+.dropdown-toggle{
+    height: 35px;
+}
+
+.bootstrap-select{
+    width: 180px !important;
+
+}
+#cat-head{
+    color: white;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+img{
+    max-width: 800px;
+}
+
+#subval{
+    max-width: 180px;
+    white-space: normal;
+    line-height: 1em;
+}
+
+.editor{
+    text-align: center;
+}
+
+.abbr-tooltip{
+    color: orangered
+}
+
+#toc{
+    text-align: left;
+    line-height: 1em;
+}
+
+#contents-head{
+    font-size: 20px;
+    padding-left: 5px;
+}
+
+.toc-link{
+    color: orangered;
+    font-size: 14px;
+}
+
+.toc-li{
+    margin-bottom: 5px;
+    list-style-type: square;
+}
+ol{
+    margin-top: 5px;
+}
+
+/* Tables */
+
+table{
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+td{
+    padding: 0px 10px;
+}
+
+.history{
+    color: orangered;
+    background-color: white;
+    border: none;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.history:hover{
+    color: darkgray;
+}
+
+#histval{
+    max-width: 190px;
+    white-space: normal;
+    line-height: 1em;
+    min-width: 190px;
+}
+
+.fa-history{
+    margin-bottom: 5px;
+    color: black;
+}
+
+#page-link{
+    margin-left: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: black;
+}
+
+abbr[title]{
+    border: none;
+    text-decoration: none;
+}
+p > img{
+    display: inherit;
+    margin: auto;
+}
+
+#abbr-table tr:nth-child(even) {
+    background-color: lightgray;
+}
+
+.print-link:hover {
+    color: lightgray;
+}
+
+.site-menu {
+    text-align: center;
+}
+.logs{
+    text-align: center;
+}
+.log{
+    font-size: 10px;
+}
+th.log-table{
+    text-align: center;
+}
+th.process-log{
+    text-align: left !important;
+}
+.log-table{
+    width: 100%;
+}
+table.log-table td{
+    max-width: 200px; 
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+}
+
+.refresh{
+    font-size: 22px;
+    padding: opx;
+}
+#process-header{
+    padding-top: 20px;
+    text-align: center;
+}
+

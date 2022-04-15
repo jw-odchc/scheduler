@@ -1,0 +1,183 @@
+<script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+{% extends "header.html" %}
+{% block content %}
+
+<style>
+    ul, #myUL {
+      list-style-type: none;
+      padding-left: 0px;
+      color: white;
+    }
+
+    .bootstrap-select {
+        width: 277px!important;
+    }
+    a {
+        color: black;
+        font-family: 'Pridi';
+        font-size: 20px;
+        font-weight: 600;
+    }
+    a:hover {
+        text-decoration: none;
+        color: grey;
+    }
+    .text {
+        font-size: 14px;
+    }
+    .dropdown{
+        margin-bottom: 20px;
+    }
+    .btn {
+        display: inline-block;
+        border: 0px;
+        max-width: 277px;
+        white-space: normal;
+        line-height: 16px;
+    }
+    .panel-heading {
+        text-align: left;
+        min-height: 40px;
+        padding-top: 8px;
+        padding-left: 10px
+    }
+    hr {
+        margin-top: -10px;
+        margin-bottom: 10px;
+    }
+    .collapse.show {
+    display: block;
+    padding-bottom: 5px!important;
+    margin-bottom: 10px!important;
+    }
+    #page-header {
+        font-size: 36px;
+    }
+    </style>
+
+<div id='site_menu' class='row' style="display:none;">
+    <div class='col-2 offset-2 site-menu'> <a class='auto-marg' href="http://tableauserv01.odchc.org/" target=”_blank”> <img
+          src="{{url_for('static',filename='images/tab_icon.png')}}" class='link-icon' alt="Tableau Icon">
+      </a> <h3 id='tab-link' class='link-name'> Tableau Reports </h3> </div>
+    
+  
+    <div class='col-2 site-menu'> <a class='auto-marg' href="http://biappserv01:8045/" target=”_blank”> <img
+          src="{{url_for('static',filename='images/wiki_icon.png')}}" class='link-icon' alt="Epic Glossary Icon">
+      </a> <h3 id='peer-link' class='link-name'> Wiki </h3>
+    </div>
+    
+  
+    <div class='col-2 site-menu'> <a class='auto-marg' href="http://biappserv01:8045/defs" target=”_blank”> <img
+          src="{{url_for('static',filename='images/epic_gloss_icon.png')}}" class='link-icon' alt="Epic Glossary Icon">
+      </a> <h3 id='report-link' class='link-name'> Definitions </h3>
+    </div>
+    
+  
+    <div class='col-2 site-menu'> <a class='auto-marg' href="https://github.com/Open-Door-Community-Health-Centers" target=”_blank”>
+        <img src="{{url_for('static',filename='images/git_icon.png')}}" class='link-icon' alt="Git Icon"> </a> <h3 id='code-link' class='link-name'> Codebase </h3> </div>
+    
+  </div>
+
+<div class='row'>
+    <div class='col-3' style="background-color: black; padding-bottom: 10px;">
+            <h3 id="cat-head" style="text-align: center;"> Search Titles </h3>
+            <select id='quick-search' class="selectpicker" data-live-search="true" title="Search" data-size="3"
+                onchange="renderpdfsearch(this)">
+                {% for nkey, nvalue in file_list.items() %}
+  
+                <option value="{{nvalue}}">{{nkey}}</option>
+
+                {% endfor %}
+            </select>
+            <hr style="border-top: 1px solid white;">
+            <h3 id="cat-head" style="text-align: center"> Or Browse Categories </h3>
+
+{{ struct | safe}}
+
+        </div> 
+
+        <button style="width: 100%; background-color: orangered;" type="button" class="btn btn-dark" onclick="renderpdf(this)" id="\static\pdf\welcome2.pdf"> <i class="far fa-file-pdf" aria-hidden="true"></i> Welcome Guide   </button>
+      </div>
+</ul>
+
+
+<div class='col-9'>
+
+
+
+<div id="adobe-dc-view" style= "width: 930px;"></div>
+
+<script type="text/javascript">
+
+  function renderpdf(clicked){
+    var pdf_name = $(clicked).attr("id");
+    showpdf(pdf_name);
+
+  }
+
+  function renderpdfsearch(clicked){
+    var pdf_name = $(clicked).val();
+    showpdf(pdf_name);
+  }
+
+    function showpdf(pdf_location){
+        var adobeDCView = new AdobeDC.View({clientId: "048a33eda54d4478bf27b4372a1edfe1", divId: "adobe-dc-view"});
+        adobeDCView.previewFile({ content:{ location:  { url: pdf_location}},
+        metaData:{fileName: "EMR"}},
+        { embedMode: "IN_LINE" });
+    }
+
+</script>
+</div>
+</div>
+<script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
+
+    <script
+    src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+    integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+    crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+
+<script type="text/javascript">
+  $('#show_menu').click(function () {
+    if ($('#site_menu').is(":visible")) {
+      $('#site_menu').hide("slide", { direction: "up", duration: 200 });
+
+    } else {
+      $('#site_menu').show("slide", { direction: "up", duration: 500 });
+    }
+  })
+
+  function load_welcome(){
+    document.addEventListener("adobe_dc_view_sdk.ready", function()
+   {
+    var adobeDCView = new AdobeDC.View({clientId: "048a33eda54d4478bf27b4372a1edfe1", divId: "adobe-dc-view"});
+    adobeDCView.previewFile({ content:{ location:  { url: "static/pdf/welcome2.pdf"}},
+    metaData:{fileName: "EMR"}},
+    { embedMode: "IN_LINE" });
+   });
+  }
+
+  window.addEventListener("beforeunload", load_welcome());
+
+$(document).ready(function () {
+    $('.selectpicker').selectpicker();
+    load_welcome();
+});
+
+</script>
+
+</body>
+</html>
+{% endblock content %}
+

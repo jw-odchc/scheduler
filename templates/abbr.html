@@ -1,0 +1,24 @@
+{% extends "header.html" %}
+{% block content %}
+
+<table id='abbr-table'>
+    <thead>
+        <tr>
+            <th>Acronym/Abbreviation</th>
+            <th>Definition</th>
+        </tr>
+    </thead>
+    <body>
+        {% for item in abbrs %}
+        <tr>
+            <td> {{item['abbr']}} </td>
+            <td> {{item['def']}} </td>
+        </tr>
+        {% endfor %}
+    </body>
+</table>
+
+
+</body>
+</html>
+{% endblock content %}
